@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* =========================================
+   1. RESET & BASE
+   ========================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; text-decoration: none; }
+html, body { margin: 0 !important; padding: 0; overflow-x: hidden; }
+body { background-color: #e8e6e1; color: #1a1a1a; padding-top: 70px; }
+
+/* =========================================
+   2. NAVBAR / HEADER
+   ========================================= */
+header { background: #fff; display: flex; align-items: center; justify-content: space-between; padding: 15px 5%; position: fixed; top: 0 !important; left: 0; width: 100%; z-index: 1000; box-shadow: 0 1px 5px rgba(0,0,0,0.05); }
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo img { height: 35px; width: auto; }
+.logo h2 { font-size: 22px; font-weight: 700; color: #1a1a1a; }
+.navbar a { margin: 0 15px; font-size: 14px; font-weight: 600; color: #333; transition: 0.2s; }
+.navbar a:hover { color: #3b82f6; }
+.header-icons { display: flex; gap: 20px; align-items: center; }
+.header-icons a { font-size: 18px; color: #1a1a1a; transition: 0.2s; }
+.header-icons a:hover { color: #3b82f6; transform: scale(1.1); }
+
+/* =========================================
+   3. HERO SLIDER CSS ONLY
+   ========================================= */
+.hero-css { position: relative; width: 100%; height: 80vh; overflow: hidden; }
+.hero-css input[type="radio"] { display: none; }
+.slider-images { position: absolute; inset: 0; width: 100%; height: 100%; }
+.img-bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 0.6s ease-in-out; }
+
+.img-1 { background-image: url('BG\ HP.jpeg'); }
+.img-2 { background-image: url('BG1.jpeg'); }
+.img-3 { background-image: url('BG2.jpeg'); }
+.img-4 { background-image: url('https://images.unsplash.com/photo-1520975954732-57dd22299614?q=80&w=1920'); }
+
+#s1:checked ~ .slider-images .img-1, #s2:checked ~ .slider-images .img-2,
+#s3:checked ~ .slider-images .img-3, #s4:checked ~ .slider-images .img-4 { opacity: 1; z-index: 1; }
+
+.hero-overlay { position: absolute; inset: 0; background: rgba(255, 255, 255, 0.4); z-index: 5; }
+.hero-text-container { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; text-align: center; }
+.hero-text-container h1 { font-size: 46px; font-weight: 800; color: #333; margin-bottom: 10px; text-shadow: 0 0 30px #fff; }
+.hero-text-container h3 { font-size: 20px; font-weight: 700; color: #444; margin-bottom: 20px; text-shadow: 0 0 15px #fff; }
+.hero-text-container p { font-size: 13px; font-weight: 600; color: #666; margin-bottom: 35px; text-shadow: 0 0 10px #fff; }
+.btn-shop { background-color: #4a4a4a; color: #fff; padding: 14px 40px; border-radius: 30px; font-size: 16px; font-weight: 700; transition: 0.3s; }
+.btn-shop:hover { background-color: #222; }
+
+/* PANAH */
+.arrow-group { display: none; }
+.arrow-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 45px; height: 45px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #333; cursor: pointer; z-index: 20; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.arrow-left { left: 3%; } .arrow-right { right: 3%; }
+#s1:checked ~ .slider-arrows .arrow-group-1, #s2:checked ~ .slider-arrows .arrow-group-2,
+#s3:checked ~ .slider-arrows .arrow-group-3, #s4:checked ~ .slider-arrows .arrow-group-4 { display: block; }
+
+/* =========================================
+   4. PILL DECORATION
+   ========================================= */
+.pill-decoration-wrapper { display: flex; justify-content: center; margin-top: -25px; position: relative; z-index: 50; }
+.white-pill-decor { width: 100%; max-width: 800px; height: 50px; background: #fff; border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+
+/* =========================================
+   5. CATEGORIES
+   ========================================= */
+.categories-section { padding: 60px 8% 40px; max-width: 1300px; margin: 0 auto; }
+.cat-title { font-size: 14px; font-weight: 700; color: #333; margin-bottom: 30px; }
+.cat-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 30px 10px; }
+.cat-item { display: flex; flex-direction: column; align-items: center; text-align: center; cursor: pointer; transition: 0.2s; }
+.cat-item:hover { transform: translateY(-5px); }
+
+/* INI YANG DIUBAH BIAR BULAT SEMPURNA */
+.img-circle { 
+    width: 90px; 
+    height: 90px; 
+    background: #fff; 
+    border-radius: 50%; 
+    margin-bottom: 12px; 
+    box-shadow: 0 6px 15px rgba(0,0,0,0.06); 
+    border: 3px solid #fff; /* Bingkai putih luar */
+    overflow: hidden; /* Kunci agar gambar yang keluar batas langsung dipotong bulat */
+}
+
+.img-circle img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; /* Memaksa gambar memenuhi seluruh lingkaran tanpa gepeng */
+    display: block;
+}
+
+.cat-item span { font-size: 13px; font-weight: 700; color: #333; line-height: 1.4; margin-top: 5px; }
+
+/* =========================================
+   6. ETALASE (DISCOUNT & BEST SELLER)
+   ========================================= */
+.product-showcase { padding: 30px 8% 50px; max-width: 1300px; margin: 0 auto; }
+.section-title { font-size: 24px; font-weight: 800; color: #333; margin-bottom: 30px; text-align: left; }
+.section-title span { color: #8ba68b; }
+
+.discount-banner-box { display: flex; background: linear-gradient(to right, #d3dad1, #e3e8e1); border-radius: 12px; padding: 20px; align-items: center; gap: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+.discount-banner-left { border-right: 2px solid rgba(0,0,0,0.1); padding-right: 20px; }
+.discount-banner-left h3 { font-size: 24px; color: #333; line-height: 1.2; }
+.discount-promo-text h2 { font-size: 20px; color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
+.discount-products { display: flex; gap: 15px; flex: 1; overflow-x: auto; padding-bottom: 10px; }
+.d-card { background: #fff; padding: 12px; border-radius: 8px; min-width: 140px; text-align: center; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+.d-card img { width: 100%; height: 140px; object-fit: cover; border-radius: 4px; margin-bottom: 10px; }
+.d-card h4 { font-size: 12px; color: #333; margin-bottom: 5px; font-weight: 600;}
+.d-price-strike { font-size: 11px; color: #ff4d4f; text-decoration: line-through; }
+.d-price-final { font-size: 13px; color: #333; font-weight: 800; }
+
+.bestseller-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.bs-card { background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-decoration: none; transition: 0.3s; border-radius: 8px; overflow: hidden;}
+.bs-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+.bs-card img { width: 100%; height: 400px; object-fit: cover; }
+.bs-info { background: #e0e0e0; padding: 15px; text-align: center; font-size: 14px; font-weight: 600; color: #333; }
+
+/* =========================================
+   7. FOOTER
+   ========================================= */
+.footer-section { background-color: #d9d9d9; padding: 60px 5%; color: #000; }
+.footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1.5fr 2fr 1fr; gap: 40px; }
+.footer-column h3 { font-size: 13px; font-weight: 800; margin-bottom: 25px; }
+.footer-column ul { list-style: none; }
+.footer-column ul li { margin-bottom: 12px; }
+.footer-column ul li a { color: #000; font-size: 12px; font-weight: 600; }
+.payment-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.payment-grid img { width: 100%; height: 45px; object-fit: contain; background: #fff; padding: 5px; border-radius: 4px; }
+.social-links li a { display: flex; align-items: center; gap: 10px; }
+
+/* =========================================
+   8. ABOUT US SECTION
+   ========================================= */
+.about-us-section { background-color: #9f9f9f; padding: 60px 5% 80px; }
+.about-title { text-align: center; font-size: 36px; font-weight: 800; margin-bottom: 50px; }
+.about-title .text-white { color: #ffffff; }
+.about-title .text-dark { color: #222222; }
+
+.about-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: flex-end; }
+
+/* Diperbaiki agar teks rata kiri di dalam kolom sebelah kanan */
+.about-content-right { width: 50%; text-align: left; }
+.about-content-right h3 { font-size: 26px; font-weight: 700; color: #ffffff; margin-bottom: 15px; }
+.about-content-right p { font-size: 13px; line-height: 1.6; color: #444444; font-weight: 500; margin-bottom: 20px; }
+.about-contact { margin-bottom: 25px; font-size: 13px; color: #444444; font-weight: 500; line-height: 1.6; }
+.about-contact a { color: #444444; text-decoration: underline; }
+
+.btn-3d-learn-more {
+    position: relative; background: linear-gradient(0deg, #666666 0%, #888888 100%); 
+    color: #ffffff; border: none; padding: 12px 35px; border-radius: 20px; font-size: 13px; font-weight: 700; cursor: pointer;
+    box-shadow: 0px 4px 0px #444444, 0px 6px 15px rgba(0,0,0,0.3); transition: all 0.1s ease-in-out;
+}
+.btn-3d-learn-more:hover { background: linear-gradient(0deg, #777777 0%, #999999 100%); }
+.btn-3d-learn-more:active { top: 3px; box-shadow: 0px 1px 0px #444444, 0px 3px 5px rgba(0,0,0,0.3); }
+
+@media (max-width: 768px) {
+    .about-container { justify-content: flex-start; }
+    .about-content-right { width: 100%; text-align: left; }
+    .footer-container { grid-template-columns: 1fr 1fr; }
+}

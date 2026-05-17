@@ -1,0 +1,491 @@
+/* =========================================
+   1. RESET & VARIABLES
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --primary: #48bb78; /* Hijau segar sesuai tombol */
+    --black: #1a1a1a;
+    --gray-text: #666666;
+    --gray-light: #999999;
+    --bg-body: #f8f9fa; /* Latar belakang abu-abu sangat muda */
+    --bg-footer: #111827; /* Biru dongker/hitam pekat untuk footer */
+    --border-color: #e5e7eb;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    text-decoration: none !important;
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--black);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* =========================================
+   2. HEADER (FULL WIDTH)
+   ========================================= */
+header {
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 5%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    height: 35px;
+    width: auto;
+}
+
+.logo h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--black);
+}
+
+.navbar a {
+    margin: 0 15px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--black);
+    transition: color 0.2s;
+}
+
+.navbar a:hover {
+    color: var(--primary);
+}
+
+.header-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.header-icons i {
+    font-size: 18px;
+    color: var(--black);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.header-icons i:hover {
+    color: var(--primary);
+}
+
+/* =========================================
+   3. KONTEN PRODUK UTAMA (CENTERED CARD)
+   ========================================= */
+main.product-content {
+    flex: 1; /* Mendorong footer ke bawah */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 120px 5% 60px; /* Jarak atas agar tidak tertutup header */
+}
+
+.product-card {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 950px;
+    padding: 40px;
+    gap: 50px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+/* Bagian Kiri: Gambar */
+.product-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-image img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Bagian Kanan: Detail */
+.product-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-details h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--black);
+}
+
+.description {
+    font-size: 13px;
+    color: var(--gray-text);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Harga */
+.price-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.price {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--black);
+}
+
+.price-original {
+    font-size: 15px;
+    color: var(--gray-light);
+    text-decoration: line-through;
+    font-weight: 500;
+}
+
+/* Label Pilihan */
+.section-title {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--black);
+}
+
+/* Pilihan Warna */
+.colors {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.color-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #e0e0e0;
+    transition: 0.2s;
+}
+
+.color-circle.active {
+    border-color: var(--black);
+    transform: scale(1.15);
+}
+
+.color-black { background-color: #000000; }
+.color-blue { background-color: #1e3a8a; }
+.color-red { background-color: #b91c1c; }
+.color-white { background-color: #ffffff; }
+
+/* Pilihan Ukuran */
+.sizes {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.size-box {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--black);
+    transition: 0.2s;
+}
+
+.size-box.active {
+    background-color: var(--black);
+    color: #ffffff;
+    border-color: var(--black);
+}
+
+/* Kontrol Jumlah (Quantity) */
+.quantity-control {
+    display: flex;
+    width: 130px;
+    height: 40px;
+    border: 1px solid var(--primary);
+    border-radius: 4px;
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+.qty-btn {
+    width: 40px;
+    background-color: #eaf6ed; /* Hijau sangat muda */
+    color: var(--primary);
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.qty-btn:hover {
+    background-color: var(--primary);
+    color: #fff;
+}
+
+#qty-input {
+    flex: 1;
+    width: 100%;
+    border: none;
+    border-left: 1px solid var(--primary);
+    border-right: 1px solid var(--primary);
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--black);
+    outline: none;
+}
+
+/* Tombol Aksi */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: 0.2s;
+}
+
+.btn-cart {
+    background-color: var(--primary);
+    color: #ffffff;
+    border: none;
+}
+
+.btn-cart:hover {
+    background-color: #38a169;
+}
+
+.btn-checkout {
+    background-color: #ffffff;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+}
+
+.btn-checkout:hover {
+    background-color: #f0fff4;
+}
+
+/* =========================================
+   4. FOOTER (DARK MODE BAWAH)
+   ========================================= */
+.footer-modern {
+    background-color: var(--bg-footer);
+    color: #ffffff;
+    padding: 50px 5% 20px;
+    width: 100%;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    border-bottom: 1px solid #374151;
+    padding-bottom: 40px;
+    margin-bottom: 20px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-brand {
+    flex: 2;
+    min-width: 280px;
+}
+
+.footer-brand h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.footer-brand p {
+    color: #9ca3af;
+    font-size: 13px;
+    line-height: 1.6;
+    max-width: 300px;
+    margin-bottom: 20px;
+}
+
+/* Kotak Newsletter */
+.newsletter {
+    display: flex;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.newsletter input {
+    flex: 1;
+    padding: 10px 15px;
+    border: none;
+    outline: none;
+    font-size: 13px;
+}
+
+.newsletter button {
+    background-color: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+.footer-links {
+    flex: 1;
+    min-width: 150px;
+}
+
+.footer-links h4 {
+    font-size: 13px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: #9ca3af;
+    font-size: 13px;
+    transition: 0.2s;
+}
+
+.footer-links a:hover {
+    color: #ffffff;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.payment-icons i {
+    font-size: 24px;
+    color: #6b7280;
+    margin-right: 10px;
+}
+
+.social-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    background-color: #374151;
+    color: #ffffff;
+    border-radius: 50%;
+    margin-left: 10px;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.social-icons a:hover {
+    background-color: var(--primary);
+}
+
+.copyright {
+    width: 100%;
+    text-align: center;
+    color: #6b7280;
+    font-size: 12px;
+    margin-top: 15px;
+}
+
+/* =========================================
+   5. SIDEBAR KERANJANG (TETAP AMAN)
+   ========================================= */
+.cart-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5); visibility: hidden; opacity: 0; z-index: 9998; transition: 0.3s;
+}
+.cart-overlay.active { visibility: visible; opacity: 1; }
+
+.cart-sidebar {
+    position: fixed; top: 0; right: 0; width: 400px; height: 100vh;
+    background: #fff; transform: translateX(100%); z-index: 9999;
+    transition: 0.4s ease; display: flex; flex-direction: column; box-shadow: -5px 0 15px rgba(0,0,0,0.05);
+}
+.cart-sidebar.active { transform: translateX(0); }
+
+.cart-header { padding: 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
+.close-cart { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--black); }
+.cart-items { flex: 1; padding: 20px; overflow-y: auto; }
+
+/* Gambar di keranjang dijamin tidak raksasa */
+.cart-item { display: flex; gap: 15px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color); margin-bottom: 20px; }
+.cart-item img { width: 70px !important; height: 70px !important; object-fit: cover; border-radius: 4px; border: 1px solid var(--border-color); }
+.cart-item-details h4 { font-size: 13px; margin-bottom: 5px; }
+.cart-item-details p { font-size: 12px; color: var(--gray-text); margin-bottom: 3px; }
+.item-price { font-weight: 700; color: var(--primary); font-size: 14px; }
+
+.cart-footer { padding: 20px; border-top: 1px solid var(--border-color); background-color: var(--bg-body); }
+.cart-total { display: flex; justify-content: space-between; font-weight: 700; font-size: 16px; margin-bottom: 15px; color: var(--black); }
+
+.toast {
+    position: fixed; top: 20px; right: 20px; background: var(--primary);
+    color: #fff; padding: 15px 25px; border-radius: 4px; z-index: 10000;
+    transform: translateX(150%); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-size: 14px; font-weight: 600; box-shadow: 0 4px 12px rgba(72,187,120,0.3);
+}
+.toast.show { transform: translateX(0); }
