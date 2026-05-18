@@ -36,8 +36,8 @@ header { background: #fff; display: flex; align-items: center; justify-content: 
 
 .img-1 { background-image: url('images/BG 1.jpeg'); }
 .img-2 { background-image: url('images/BG 2.jpeg'); }
-.img-3 { background-image: url('images/BG 3.jpeg'); }
-.img-4 { background-image: url('images/BG\ 4.png'); }
+.img-3 { background-image: url('images/BG 3.png'); }
+.img-4 { background-image: url('images/BG 4.png'); }
 
 #s1:checked ~ .slider-images .img-1, #s2:checked ~ .slider-images .img-2,
 #s3:checked ~ .slider-images .img-3, #s4:checked ~ .slider-images .img-4 { opacity: 1; z-index: 1; }
