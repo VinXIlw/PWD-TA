@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Simpan barang yang dicentang ke pendingOrder agar dibaca oleh checkout.html
                 localStorage.setItem('pendingOrder', JSON.stringify(itemsToCheckout));
-                window.location.href = 'pageCheckout.html';
+                window.location.href = 'checkoutPage.html';
             });
         }
 
