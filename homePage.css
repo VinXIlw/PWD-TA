@@ -28,9 +28,9 @@ header { background: #fff; display: flex; align-items: center; justify-content: 
 .slider-images { position: absolute; inset: 0; width: 100%; height: 100%; }
 .img-bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 0.6s ease-in-out; }
 
-.img-1 { background-image: url('BG\ HP.jpeg'); }
-.img-2 { background-image: url('BG1.jpeg'); }
-.img-3 { background-image: url('BG2.jpeg'); }
+.img-1 { background-image: url('images/BG\ HP.jpeg'); }
+.img-2 { background-image: url('images/BG1.jpeg'); }
+.img-3 { background-image: url('images/BG2.jpeg'); }
 .img-4 { background-image: url('https://images.unsplash.com/photo-1520975954732-57dd22299614?q=80&w=1920'); }
 
 #s1:checked ~ .slider-images .img-1, #s2:checked ~ .slider-images .img-2,
