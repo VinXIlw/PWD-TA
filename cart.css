@@ -1,102 +1,102 @@
-        * { 
-            margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; text-decoration: none; 
-        }
+* { 
+    margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; text-decoration: none; 
+}
         
-        body { 
-            background-color: #efece5; /* Warna bg-krem */
-            color: #1a1a1a; /* Warna text hitam */
-            min-height: 100vh; 
-            display: flex; 
-            flex-direction: column; 
-            padding-top: 80px; 
-        }
+body { 
+        background-color: #efece5; /* Warna bg-krem */
+        color: #1a1a1a; /* Warna text hitam */
+        min-height: 100vh; 
+        display: flex; 
+        flex-direction: column; 
+        padding-top: 80px; 
+}
         
-        /* HEADER PUTIH BERSIH */
-        header { 
-            background: #fff; display: flex; align-items: center; justify-content: space-between; 
-            padding: 15px 5%; position: fixed; top: 0; width: 100%; z-index: 1000; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
-        }
-        .logo { display: flex; align-items: center; gap: 10px; }
-        .logo img { height: 35px; }
-        .logo h2 { font-size: 22px; font-weight: 700; color: #1a1a1a; }
-        .navbar a { margin: 0 15px; font-size: 14px; font-weight: 600; color: #1a1a1a; }
-        .header-icons a { font-size: 18px; color: #1a1a1a; margin-left: 20px; }
+/* HEADER PUTIH BERSIH */
+header { 
+        background: #fff; display: flex; align-items: center; justify-content: space-between; 
+        padding: 15px 5%; position: fixed; top: 0; width: 100%; z-index: 1000; 
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
+}
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo img { height: 35px; }
+.logo h2 { font-size: 22px; font-weight: 700; color: #1a1a1a; }
+.navbar a { margin: 0 15px; font-size: 14px; font-weight: 600; color: #1a1a1a; }
+.header-icons a { font-size: 18px; color: #1a1a1a; margin-left: 20px; }
 
-        /* CONTAINER KERANJANG */
-        .cart-container { 
-            flex: 1; padding: 40px 5%; max-width: 900px; margin: 0 auto; width: 100%; 
-            display: flex; flex-direction: column; gap: 25px;
-        }
+/* CONTAINER KERANJANG */
+.cart-container { 
+        flex: 1; padding: 40px 5%; max-width: 900px; margin: 0 auto; width: 100%; 
+        display: flex; flex-direction: column; gap: 25px;
+}
 
-        /* STYLE CARD PRODUK SEPERTI GAMBAR */
-        .product-card {
-            background-color: #e8e8e8; /* Warna abu-abu card */
-            border-radius: 16px;
-            padding: 25px 30px;
-            display: flex;
-            align-items: center;
-            box-shadow: inset 2px 2px 5px rgba(255,255,255,0.7), 4px 4px 10px rgba(0,0,0,0.05);
-            border: 2px solid transparent;
-            cursor: pointer;
-            transition: 0.3s;
-            position: relative;
-        }
+/* STYLE CARD PRODUK SEPERTI GAMBAR */
+.product-card {
+        background-color: #e8e8e8; /* Warna abu-abu card */
+        border-radius: 16px;
+        padding: 25px 30px;
+        display: flex;
+        align-items: center;
+        box-shadow: inset 2px 2px 5px rgba(255,255,255,0.7), 4px 4px 10px rgba(0,0,0,0.05);
+        border: 2px solid transparent;
+        cursor: pointer;
+        transition: 0.3s;
+        position: relative;
+}
 
-        /* EFEK SAAT CARD DIPILIH (BORDER UNGU) */
-        .product-card.selected {
-            border-color: #9b51e0; /* Warna border ungu */
-            background-color: #eae5f2; /* Sedikit bias ungu */
-        }
+/* EFEK SAAT CARD DIPILIH (BORDER UNGU) */
+.product-card.selected {
+        border-color: #9b51e0; /* Warna border ungu */
+        background-color: #eae5f2; /* Sedikit bias ungu */
+}
 
-        .product-image {
-            width: 80px; height: 80px; object-fit: contain; margin-right: 30px; mix-blend-mode: multiply;
-        }
+.product-image {
+        width: 80px; height: 80px; object-fit: contain; margin-right: 30px; mix-blend-mode: multiply;
+}
 
-        .product-info {
-            flex: 2;
-        }
-        .product-info h3 {
-            font-size: 22px; font-weight: 700; margin-bottom: 8px; color: #111;
-        }
-        .product-info p {
-            font-size: 14px; color: #333; line-height: 1.6;
-        }
+.product-info {
+        flex: 2;
+}
+.product-info h3 {
+        font-size: 22px; font-weight: 700; margin-bottom: 8px; color: #111;
+}
+.product-info p {
+        font-size: 14px; color: #333; line-height: 1.6;
+}
 
-        .product-price {
-            flex: 1; text-align: left;
-        }
-        .product-price .current-price {
-            font-size: 18px; font-weight: 700; color: #111; margin-bottom: 3px;
-        }
-        .product-price .old-price {
-            font-size: 15px; color: #a0a0a0; text-decoration: line-through; font-weight: 500;
-        }
+.product-price {
+        flex: 1; text-align: left;
+}
+.product-price .current-price {
+        font-size: 18px; font-weight: 700; color: #111; margin-bottom: 3px;
+}
+.product-price .old-price {
+        font-size: 15px; color: #a0a0a0; text-decoration: line-through; font-weight: 500;
+}
 
-        /* LINGKARAN PEMILIH DI KANAN */
-        .selector-circle {
-            width: 35px; height: 35px; border-radius: 50%; border: 3px solid #ccc;
-            background: transparent; transition: 0.2s; box-shadow: inset 2px 2px 5px rgba(0,0,0,0.1);
-        }
-        .product-card.selected .selector-circle {
-            border-color: #9b51e0;
-            background-color: #9b51e0;
-            box-shadow: 0 0 10px rgba(155, 81, 224, 0.4);
-        }
+/* LINGKARAN PEMILIH DI KANAN */
+.selector-circle {
+        width: 35px; height: 35px; border-radius: 50%; border: 3px solid #ccc;
+        background: transparent; transition: 0.2s; box-shadow: inset 2px 2px 5px rgba(0,0,0,0.1);
+}
+.product-card.selected .selector-circle {
+        border-color: #9b51e0;
+        background-color: #9b51e0;
+        box-shadow: 0 0 10px rgba(155, 81, 224, 0.4);
+}
 
-        /* TOMBOL CHECKOUT MENGAMBANG DI BAWAH */
-        .checkout-bar {
-            position: fixed; bottom: 0; left: 0; width: 100%; background: #fff;
-            padding: 20px 5%; box-shadow: 0 -4px 15px rgba(0,0,0,0.05);
-            display: flex; justify-content: space-between; align-items: center; z-index: 100;
-        }
-        .total-text { font-size: 16px; color: #666; }
-        .total-price { font-size: 24px; font-weight: 700; color: #111; }
-        .btn-checkout {
+/* TOMBOL CHECKOUT MENGAMBANG DI BAWAH */
+.checkout-bar {
+        position: fixed; bottom: 0; left: 0; width: 100%; background: #fff;
+        padding: 20px 5%; box-shadow: 0 -4px 15px rgba(0,0,0,0.05);
+        display: flex; justify-content: space-between; align-items: center; z-index: 100;
+}
+.total-text { font-size: 16px; color: #666; }
+.total-price { font-size: 24px; font-weight: 700; color: #111; }
+.btn-checkout {
             background: #111; color: #fff; padding: 15px 40px; border-radius: 30px;
             font-size: 16px; font-weight: 700; cursor: pointer; border: none; transition: 0.3s;
-        }
-        .btn-checkout:hover { background: #9b51e0; }
+}
+.btn-checkout:hover { background: #9b51e0; }
 
-        /* Jarak tambahan agar list paling bawah tidak tertutup bar checkout */
-        .spacer { padding-bottom: 100px; }
+/* Jarak tambahan agar list paling bawah tidak tertutup bar checkout */
+.spacer { padding-bottom: 100px; }
