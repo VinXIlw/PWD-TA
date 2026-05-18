@@ -6,9 +6,8 @@
     <title>Checkout - Elvra.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        
-    </style>
+    <link rel="stylesheet" href="pageCheckout.css">
+    
 </head>
 <body>
 
@@ -18,7 +17,7 @@
             <h2>Elvra.</h2>
         </div>
         <div class="header-icons">
-            <a href="index.html" style="color: #333;"><i class="fa-solid fa-house"></i></a>
+            <a href="homePage.html" style="color: #333;"><i class="fa-solid fa-house"></i></a>
         </div>
     </header>
 
@@ -99,7 +98,7 @@
             document.getElementById('btn-konfirmasi').addEventListener('click', function() {
                 alert('Pesanan Dibuat!');
                 localStorage.clear();
-                window.location.href = 'index.html';
+                window.location.href = 'homePage.html';
             });
         });
     </script>
