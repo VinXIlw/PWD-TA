@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Daftar Gambar Berdasarkan Warna
     const imageSources = {
-        "Hitam": "Kaos Hitam.jpg",
-        "Biru": "Kaos Biru.jpeg",
-        "Merah": "Kaos Merah.jpg",
-        "Putih": "Kaos Putih.jpg"
+        "Hitam": "images/Kaos Hitam.jpg",
+        "Biru": "images/Kaos Biru.jpeg",
+        "Merah": "images/Kaos Merah.jpg",
+        "Putih": "images/Kaos Putih.jpg"
     };
 
     // --- 2. LOGIKA PLUS / MINUS JUMLAH ---
@@ -139,3 +139,36 @@ if (btnCartSubmit) {
 
 });
 
+const btnAddToCart = document.querySelector('.btn-cart');
+
+if(btnAddToCart) {
+    btnAddToCart.addEventListener('click', () => {
+        // 1. Ambil data produk yang sedang dilihat
+        const title = document.querySelector('.product-details h1').innerText;
+        const priceText = document.querySelector('.price').innerText;
+        const price = parseInt(priceText.replace(/[^0-9]/g, '')); // Ubah "Rp150.000" jadi angka 150000
+        const imageSrc = document.getElementById('main-image').src;
+        const qty = parseInt(document.getElementById('qty-input').value) || 1;
+        const color = document.querySelector('.color-circle.active').getAttribute('data-color');
+        const size = document.querySelector('.size-box.active').innerText;
+
+        // 2. Buat format data untuk disimpan
+        const productData = {
+            id: Date.now(), // id unik
+            title: title,
+            price: price,
+            imageSrc: imageSrc,
+            qty: qty,
+            color: color,
+            size: size
+        };
+
+        // 3. Simpan ke database sementara di browser (LocalStorage)
+        let cart = JSON.parse(localStorage.getItem('elvra_cart')) || [];
+        cart.push(productData);
+        localStorage.setItem('elvra_cart', JSON.stringify(cart));
+
+        // 4. Kasih notifikasi tanpa pindah halaman
+        alert('Produk berhasil ditambahkan ke keranjang!');
+    });
+}
