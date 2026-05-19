@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Tampilkan data keranjang pertama kali
     renderCart();
     
-    // FIX: Memasukkan '.btn-neu-checkout' ke dalam pencarian JS!
+    // Memasukkan '.btn-neu-checkout' ke dalam pencarian JS!
     const btnSelesaikan = document.querySelector('.btn-neu-checkout, .btn-selesaikan, .btn-checkout, #btn-lanjut-checkout');
     
     if (btnSelesaikan) {

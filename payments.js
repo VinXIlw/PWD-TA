@@ -6,22 +6,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const shippingSelect = document.getElementById('shipping-select');
     const btnBuatPesanan = document.getElementById('btn-buat-pesanan');
 
-    // 1. Ambil database keranjang
+    // 1. Ambil data keranjang & Filter HANYA yang tercentang
     let cart = JSON.parse(localStorage.getItem('elvra_cart')) || [];
-
-    // 2. Filter: HANYA ambil produk yang dicentang (selected === true)
     let checkoutItems = cart.filter(item => item.selected);
 
-    // Keamanan: Jika iseng akses checkout.html padahal belum milih barang, balikin ke cart
+    // Kalau kosong/belum pilih, tendang balik ke cart
     if (checkoutItems.length === 0) {
-        alert('Tidak ada produk pilihan untuk di-checkout!');
+        alert('Tidak ada produk yang dipilih untuk di-checkout!');
         window.location.href = 'cart.html';
         return;
     }
 
     let subtotalProduk = 0;
 
-    // 3. Fungsi Menampilkan Ringkasan Produk Pesanan
+    // 2. Gambar produk di layar
     function renderCheckoutItems() {
         let html = '';
         subtotalProduk = 0;
@@ -49,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hitungTotalAkhir();
     }
 
-    // 4. Fungsi Mengalkulasi Total Akhir (Subtotal + Ongkir Kurir)
+    // 3. Kalkulasi Otomatis pas Kurir diganti
     function hitungTotalAkhir() {
         let biayaOngkir = parseInt(shippingSelect.value);
         let grandTotal = subtotalProduk + biayaOngkir;
@@ -57,25 +55,34 @@ document.addEventListener('DOMContentLoaded', () => {
         summaryShipping.innerText = 'Rp ' + biayaOngkir.toLocaleString('id-ID');
         summaryGrandTotal.innerText = 'Rp ' + grandTotal.toLocaleString('id-ID');
     }
-
-    // Event saat pilihan kurir diubah-ubah oleh pembeli
     shippingSelect.addEventListener('change', hitungTotalAkhir);
 
-    // 5. Trigger Tombol "Buat Pesanan Sekarang" (Aksi Final)
+    // 4. Proses Tombol "Buat Pesanan Sekarang"
     btnBuatPesanan.addEventListener('click', () => {
-        const metodeTerpilih = document.querySelector('input[name="payment-method"]:checked').value.toUpperCase();
-        
-        alert(`Pesanan Berhasil Dibuat!\nMetode Pembayaran: ${metodeTerpilih}\nTerima kasih telah berbelanja di Elvra.`);
+        // AMBIL DATA FORM ALAMAT
+        const namaPenerima = document.getElementById('input-nama').value.trim();
+        const noTelp = document.getElementById('input-telepon').value.trim();
+        const alamatLengkap = document.getElementById('input-alamat').value.trim();
 
-        // SHOPEE LOGIC: Hapus produk yang dibeli ini dari data keranjang utama
-        // Sisakan produk yang tadi TIDAK dicentang di dalam keranjang
+        // VALIDASI: Cek apakah ada yang masih kosong?
+        if (namaPenerima === '' || noTelp === '' || alamatLengkap === '') {
+            alert('Tunggu dulu! Tolong isi Nama, Nomor Telepon, dan Alamat Pengiriman dengan lengkap.');
+            return; // Berhentikan proses
+        }
+
+        // Kalau aman, ambil metode pembayaran
+        const metodeTerpilih = document.querySelector('input[name="payment-method"]:checked').value;
+        
+        // Tampilkan Notifikasi Sukses
+        alert(`Yeay! Pesanan Berhasil Dibuat.\n\nAtas Nama: ${namaPenerima}\nMetode: ${metodeTerpilih}\n\nTerima kasih telah berbelanja di Elvra!`);
+
+        // Hapus barang yang dibeli dari keranjang, sisakan yang tidak dicentang
         let sisaKeranjang = cart.filter(item => !item.selected);
         localStorage.setItem('elvra_cart', JSON.stringify(sisaKeranjang));
 
-        // Bersihkan data dan tendang kembali ke homepage utama
+        // Pindah ke Homepage
         window.location.href = 'homePage.html';
     });
 
-    // Eksekusi render pesanan
     renderCheckoutItems();
 });

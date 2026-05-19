@@ -1,199 +1,84 @@
 /* =========================================
-   DESAIN HALAMAN CHECKOUT (NEUMORPHISM STYLE)
+   DESAIN PEMBAYARAN (NEUMORPHISM STYLE)
    ========================================= */
 
-.checkout-bg {
-    background-color: #e6e4df !important; /* Warna dasar krem seragam */
-}
+.checkout-bg { background-color: #e6e4df !important; }
 
 .checkout-container {
-    padding-top: 130px;
-    padding-bottom: 100px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-top: 130px; padding-bottom: 100px;
+    max-width: 1200px; margin: 0 auto; padding-left: 5%; padding-right: 5%;
 }
 
-/* Tata letak Grid ala Shopee PC */
 .checkout-grid {
-    display: grid;
-    grid-template-columns: 1.6fr 1fr; /* Kolom kiri lebih besar */
-    gap: 30px;
-    align-items: flex-start;
+    display: grid; grid-template-columns: 1.6fr 1fr; gap: 30px; align-items: flex-start;
 }
+.checkout-left-column, .checkout-right-column { display: flex; flex-direction: column; gap: 25px; }
 
-.checkout-left-column, .checkout-right-column {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-}
-
-/* KOTAK KARTU TIMBUL (Neumorphism Box) */
 .neu-card-box {
-    background: #e6e4df;
-    border-radius: 16px;
-    padding: 25px 30px;
+    background: #e6e4df; border-radius: 16px; padding: 25px 30px;
     box-shadow: 9px 9px 18px #cac8c4, -9px -9px 18px #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
-.section-title {
-    font-size: 18px;
-    font-weight: 800;
-    color: #1a1a1a;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.section-title { font-size: 18px; font-weight: 800; color: #1a1a1a; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+
+/* ======== DESAIN FORM INPUT ALAMAT ======== */
+.address-form-neu { display: flex; flex-direction: column; gap: 15px; }
+
+.neu-input {
+    width: 100%; padding: 15px 20px; background: #e6e4df; border: none; border-radius: 8px;
+    font-size: 14px; font-weight: 500; color: #111; font-family: 'Inter', sans-serif;
+    /* Efek tenggelam (Inset) */
+    box-shadow: inset 4px 4px 8px #cac8c4, inset -4px -4px 8px #ffffff;
+    outline: none; transition: 0.2s;
+}
+.neu-input::placeholder { color: #888; }
+.neu-input:focus {
+    box-shadow: inset 6px 6px 12px #cac8c4, inset -6px -6px 12px #ffffff;
 }
 
-/* Alamat */
-.address-details strong {
-    font-size: 15px;
-    color: #111;
-}
-.address-details p {
-    font-size: 14px;
-    color: #555;
-    margin-top: 5px;
-    line-height: 1.5;
-}
+/* ======== ITEM PRODUK ======== */
+.checkout-item-row { display: flex; align-items: center; gap: 15px; padding: 15px 0; border-bottom: 1px dashed #ccc; }
+.checkout-item-row:last-child { border-bottom: none; }
+.checkout-item-img { width: 60px; height: 60px; object-fit: contain; mix-blend-mode: multiply; }
+.checkout-item-info { flex: 1; }
+.checkout-item-info h4 { font-size: 15px; font-weight: 700; color: #222; }
+.checkout-item-info p { font-size: 12px; color: #666; margin-top: 5px; }
+.checkout-item-price { font-size: 15px; font-weight: 800; color: #1a1a1a; text-align: right; }
 
-/* Daftar Item Mini di Checkout */
-.checkout-item-row {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 15px 0;
-    border-bottom: 1px dashed #ccc;
-}
-.checkout-item-row:last-child {
-    border-bottom: none;
-}
-.checkout-item-img {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
-    mix-blend-mode: multiply;
-}
-.checkout-item-info {
-    flex: 1;
-}
-.checkout-item-info h4 {
-    font-size: 15px;
-    font-weight: 700;
-    color: #222;
-}
-.checkout-item-info p {
-    font-size: 12px;
-    color: #666;
-    margin-top: 2px;
-}
-.checkout-item-price {
-    font-size: 15px;
-    font-weight: 800;
-    color: #1a1a1a;
-    text-align: right;
-}
-
-/* Dropdown Custom */
+/* ======== PENGIRIMAN & PEMBAYARAN ======== */
 .neu-select {
-    width: 100%;
-    padding: 12px 15px;
-    background: #e6e4df;
-    border: none;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #333;
-    box-shadow: inset 3px 3px 6px #cac8c4, inset -3px -3px 6px #ffffff;
-    outline: none;
-    cursor: pointer;
+    width: 100%; padding: 15px; background: #e6e4df; border: none; border-radius: 8px;
+    font-size: 14px; font-weight: 600; color: #333; cursor: pointer; outline: none;
+    box-shadow: inset 4px 4px 8px #cac8c4, inset -4px -4px 8px #ffffff;
 }
 
-/* Opsi Pembayaran (Radio Custom) */
-.payment-options {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
+.payment-options { display: flex; flex-direction: column; gap: 12px; }
 .payment-label {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: #e6e4df;
-    padding: 12px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    box-shadow: inset 2px 2px 5px transparent, 3px 3px 6px #cac8c4, -3px -3px 6px #ffffff;
-    transition: 0.2s;
-}
-.payment-label input[type="radio"] {
-    accent-color: #1a1a1a;
-    width: 18px;
-    height: 18px;
-}
-.payment-label span {
-    font-size: 14px;
-    font-weight: 600;
-    color: #333;
-}
-
-/* Rincian Tagihan Akhir */
-.billing-row {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 10px;
-    font-weight: 500;
-}
-.neu-divider {
-    border: none;
-    height: 2px;
-    background: #cac8c4;
-    margin: 15px 0;
-    box-shadow: 0 1px 1px #ffffff;
-}
-.total-row {
-    font-size: 16px;
-    color: #000;
-    margin-bottom: 25px;
-}
-.total-row strong {
-    font-size: 22px;
-    font-weight: 800;
-    color: #e74c3c; /* Warna merah total harga Shopee */
-}
-
-/* Tombol Buat Pesanan */
-.btn-place-order {
-    width: 100%;
-    background: #e6e4df;
-    color: #1a1a1a;
-    border: none;
-    padding: 15px;
-    border-radius: 8px;
-    font-size: 15px;
-    font-weight: 700;
-    cursor: pointer;
+    display: flex; align-items: center; gap: 12px; background: #e6e4df; padding: 15px 20px;
+    border-radius: 8px; cursor: pointer; transition: 0.2s;
     box-shadow: 4px 4px 8px #cac8c4, -4px -4px 8px #ffffff;
-    transition: 0.2s;
+}
+.payment-label:hover { box-shadow: inset 2px 2px 5px #cac8c4, inset -2px -2px 5px #ffffff; }
+.payment-label input[type="radio"] { accent-color: #1a1a1a; width: 18px; height: 18px; }
+.payment-label span { font-size: 14px; font-weight: 600; color: #333; }
+
+/* ======== TOTAL & TOMBOL ======== */
+.billing-row { display: flex; justify-content: space-between; font-size: 14px; color: #555; margin-bottom: 12px; font-weight: 500; }
+.neu-divider { border: none; height: 2px; background: #cac8c4; margin: 15px 0; box-shadow: 0 1px 1px #ffffff; }
+.total-row { font-size: 16px; color: #000; margin-bottom: 25px; }
+.total-row strong { font-size: 22px; font-weight: 800; color: #e74c3c; }
+
+.btn-place-order {
+    width: 100%; background: #e6e4df; color: #1a1a1a; border: none; padding: 18px; border-radius: 8px;
+    font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.2s;
+    box-shadow: 4px 4px 8px #cac8c4, -4px -4px 8px #ffffff;
 }
 .btn-place-order:hover {
-    background: #1a1a1a;
-    color: #ffffff;
+    background: #1a1a1a; color: #ffffff;
     box-shadow: inset 4px 4px 8px #000, -4px -4px 8px #ffffff;
 }
 
-/* Utilitas posisi */
 .text-right { text-align: right; }
 .text-left { text-align: left; }
 
-/* Responsif HP */
-@media (max-width: 850px) {
-    .checkout-grid {
-        grid-template-columns: 1fr;
-    }
-}
+@media (max-width: 850px) { .checkout-grid { grid-template-columns: 1fr; } }
