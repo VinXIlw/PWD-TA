@@ -104,6 +104,32 @@ if (btnCartSubmit) {
     });
 }
 
+const btnCheckoutSubmit = document.querySelector('.btn-checkout');
+
+// Aksi saat tombol "CheckOut" diklik
+if (btnCheckoutSubmit) {
+    btnCheckoutSubmit.addEventListener('click', (e) => {
+        e.preventDefault(); // Mencegah halaman ke-refresh
+        
+        // Ambil data produk yang sedang aktif/dipilih saat ini
+        const newItem = getSelectedData();
+
+        /* Gunakan nama key yang berbeda (misal: 'checkoutItem') 
+           agar halaman checkout tahu bahwa ini adalah barang "Beli Langsung", 
+           bukan dari seluruh daftar keranjang belanjaan.
+        */
+        
+        // 1. Karena beli langsung, kita buat array baru berisi 1 barang ini saja
+        let checkoutData = [newItem];
+        
+        // 2. Simpan ke dalam memori browser khusus untuk sesi checkout
+        localStorage.setItem('checkoutItem', JSON.stringify(checkoutData));
+
+        // 3. LANGSUNG PINDAH KE HALAMAN CHECKOUT.HTML
+        window.location.href = 'payments.html'; 
+    });
+}
+
     // --- 6. LOGIKA BUKA/TUTUP SIDEBAR ---
     const closeCartBtn = document.getElementById('close-cart');
     const iconCartHeader = document.getElementById('open-cart-btn');
