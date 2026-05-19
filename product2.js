@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const qtyInput = document.getElementById('qty-input');
             
             if (!titleEl || !priceEl || !imageEl) {
-                alert('Oops, struktur HTML produk tidak terdeteksi dengan benar!');
+                alert('Oops, product HTML structure was not detected correctly!');
                 return;
             }
 
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (colorCircles.length > 0) {
                 const activeColor = document.querySelector('.color-circle.active, .color-item.active, .color-circle.active-color, .color-item.active-color');
                 if (!activeColor) {
-                    alert('Silakan pilih warna produk terlebih dahulu!');
+                    alert('Please select the product color first!');
                     return;
                 }
                 color = activeColor.getAttribute('data-color') || 'Terpilih';
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (sizeBoxes.length > 0) {
                 const activeSize = document.querySelector('.size-box.active, .size-item.active, .size-box.active-size, .size-item.active-size');
                 if (!activeSize) {
-                    alert('Silakan pilih ukuran produk terlebih dahulu!');
+                    alert('Please select the product size first!');
                     return;
                 }
                 size = activeSize.innerText;
