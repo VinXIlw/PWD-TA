@@ -88,21 +88,28 @@ document.addEventListener('DOMContentLoaded', () => {
         renderCart();
     }
 
+    // Tampilkan data keranjang pertama kali
     renderCart();
-
-    // Di dalam cart.js bagian paling bawah, ganti atau tambahkan fungsi ini:
-    const btnSelesaikan = document.querySelector('.btn-selesaikan');
+    
+    // FIX: Memasukkan '.btn-neu-checkout' ke dalam pencarian JS!
+    const btnSelesaikan = document.querySelector('.btn-neu-checkout, .btn-selesaikan, .btn-checkout, #btn-lanjut-checkout');
+    
     if (btnSelesaikan) {
         btnSelesaikan.addEventListener('click', () => {
-        // Cek apakah ada produk yang dicentang
-        let sedangDipilih = cart.some(item => item.selected);
-        if (sedangDipilih) {
-            window.location.href = 'payments.html'; // Pindah ke halaman checkout
-        } else {
-            alert('Silakan pilih minimal 1 produk di keranjang terlebih dahulu!');
-        }
-    });
-}
+            // Ambil data paling baru dari browser agar akurat
+            let cartTerbaru = JSON.parse(localStorage.getItem('elvra_cart')) || [];
+            
+            // Cek apakah ada produk yang dicentang
+            let sedangDipilih = cartTerbaru.some(item => item.selected === true || item.selected === undefined);
+            
+            if (sedangDipilih) {
+                window.location.href = 'payments.html'; // Pindah ke halaman pembayaran
+            } else {
+                alert('Silakan pilih minimal 1 produk di keranjang terlebih dahulu!');
+            }
+        });
+    } else {
+        console.log("Tombol checkout tidak ditemukan di HTML!");
+    }
 
 });
-
