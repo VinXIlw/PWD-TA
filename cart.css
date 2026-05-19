@@ -1,105 +1,133 @@
-* { 
-    margin: 0;
-    padding: 0; 
-    box-sizing: border-box; 
-    font-family: 'Inter', sans-serif; text-decoration: none; 
-}
-        
-body { 
-        background-color: #efece5; /* Warna bg-krem */
-        color: #1a1a1a; /* Warna text hitam */
-        min-height: 100vh; 
-        display: flex; 
-        flex-direction: column; 
-        padding-top: 80px; 
-}
-        
-/* HEADER PUTIH BERSIH */
-header { 
-        background: #fff; display: flex; align-items: center; justify-content: space-between; 
-        padding: 15px 5%; position: fixed; top: 0; width: 100%; z-index: 1000; 
-        box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
-}
-.logo { display: flex; align-items: center; gap: 10px; }
-.logo img { height: 35px; }
-.logo h2 { font-size: 22px; font-weight: 700; color: #1a1a1a; }
-.navbar a { margin: 0 15px; font-size: 14px; font-weight: 600; color: #1a1a1a; }
-.header-icons a { font-size: 18px; color: #1a1a1a; margin-left: 20px; }
+/* =========================================
+   DESAIN NEUMORPHISM CART
+   ========================================= */
 
-/* CONTAINER KERANJANG */
-.cart-container { 
-        flex: 1; padding: 40px 5%; max-width: 900px; margin: 0 auto; width: 100%; 
-        display: flex; flex-direction: column; gap: 25px;
+/* Warna dasar background wajib seragam untuk Neumorphism */
+.cart-bg-neu {
+    background-color: #e6e4df !important; 
 }
 
-/* STYLE CARD PRODUK SEPERTI GAMBAR */
-.product-card {
-        background-color: #e8e8e8; /* Warna abu-abu card */
-        border-radius: 16px;
-        padding: 25px 30px;
-        display: flex;
-        align-items: center;
-        box-shadow: inset 2px 2px 5px rgba(255,255,255,0.7), 4px 4px 10px rgba(0,0,0,0.05);
-        border: 2px solid transparent;
-        cursor: pointer;
-        transition: 0.3s;
-        position: relative;
+.cart-main-container {
+    padding-top: 130px; 
+    padding-bottom: 100px;
+    display: flex;
+    justify-content: center;
 }
 
-/* EFEK SAAT CARD DIPILIH (BORDER UNGU) */
-.product-card.selected {
-        border-color: #9b51e0; /* Warna border ungu */
-        background-color: #eae5f2; /* Sedikit bias ungu */
+/* KOTAK UTAMA (Efek Timbul) */
+.neu-cart-box {
+    background: #e6e4df;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 900px;
+    padding: 40px;
+    box-shadow: 12px 12px 24px #cac8c4, -12px -12px 24px #ffffff;
 }
 
-.product-image {
-        width: 80px; height: 80px; object-fit: contain; margin-right: 30px; mix-blend-mode: multiply;
+/* KARTU ITEM (Efek Tenggelam/Inset) */
+.cart-item-card {
+    background: #e6e4df;
+    border-radius: 16px;
+    padding: 20px 30px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    box-shadow: inset 6px 6px 12px #cac8c4, inset -6px -6px 12px #ffffff;
 }
 
-.product-info {
-        flex: 2;
-}
-.product-info h3 {
-        font-size: 22px; font-weight: 700; margin-bottom: 8px; color: #111;
-}
-.product-info p {
-        font-size: 14px; color: #333; line-height: 1.6;
-}
-
-.product-price {
-        flex: 1; text-align: left;
-}
-.product-price .current-price {
-        font-size: 18px; font-weight: 700; color: #111; margin-bottom: 3px;
-}
-.product-price .old-price {
-        font-size: 15px; color: #a0a0a0; text-decoration: line-through; font-weight: 500;
+/* Style dasar lingkaran (pastikan kursor berubah jadi jari saat diarahkan) */
+.item-selector {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #e8e5df;
+    box-shadow: 
+        inset 3px 3px 6px #cac8c4, 
+        inset -3px -3px 6px #ffffff;
+    cursor: pointer; /* Biar tahu kalau bisa diklik */
+    position: relative;
+    transition: all 0.2s ease;
 }
 
-/* LINGKARAN PEMILIH DI KANAN */
-.selector-circle {
-        width: 35px; height: 35px; border-radius: 50%; border: 3px solid #ccc;
-        background: transparent; transition: 0.2s; box-shadow: inset 2px 2px 5px rgba(0,0,0,0.1);
-}
-.product-card.selected .selector-circle {
-        border-color: #9b51e0;
-        background-color: #9b51e0;
-        box-shadow: 0 0 10px rgba(155, 81, 224, 0.4);
+/* TAMPILAN SAAT BULATAN DIPILIH/AKTIF (Diberi titik/centang di tengah) */
+.item-selector.selected {
+    box-shadow: 
+        3px 3px 6px #cac8c4, 
+        -3px -3px 6px #ffffff;
 }
 
-/* TOMBOL CHECKOUT MENGAMBANG DI BAWAH */
-.checkout-bar {
-        position: fixed; bottom: 0; left: 0; width: 100%; background: #fff;
-        padding: 20px 5%; box-shadow: 0 -4px 15px rgba(0,0,0,0.05);
-        display: flex; justify-content: space-between; align-items: center; z-index: 100;
+.item-selector.selected::after {
+    content: '';
+    width: 15px;
+    height: 15px;
+    background-color: #1a1a1a; /* Warna hitam elegan logo Elvra */
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
-.total-text { font-size: 16px; color: #666; }
-.total-price { font-size: 24px; font-weight: 700; color: #111; }
-.btn-checkout {
-            background: #111; color: #fff; padding: 15px 40px; border-radius: 30px;
-            font-size: 16px; font-weight: 700; cursor: pointer; border: none; transition: 0.3s;
-}
-.btn-checkout:hover { background: #9b51e0; }
 
-/* Jarak tambahan agar list paling bawah tidak tertutup bar checkout */
-.spacer { padding-bottom: 100px; }
+.item-img {
+    width: 90px; height: 90px;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+}
+
+.item-details { flex: 1; }
+.item-details h3 { font-size: 20px; font-weight: 800; color: #222; margin-bottom: 5px; }
+.item-details p { font-size: 14px; color: #555; line-height: 1.5; font-weight: 500; }
+
+.item-price-col {
+    display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 130px;
+}
+
+/* Kotak Kontrol Jumlah */
+.qty-control-box {
+    display: flex; align-items: center; justify-content: space-between;
+    background: #e6e4df;
+    border-radius: 8px; width: 100%; padding: 5px 12px;
+    box-shadow: inset 3px 3px 6px #cac8c4, inset -3px -3px 6px #ffffff;
+}
+.qty-control-box button {
+    background: none; border: none; font-size: 18px; font-weight: 800; cursor: pointer; color: #111;
+}
+.qty-control-box span { font-size: 15px; font-weight: 700; color: #111; }
+
+.price-current { font-size: 17px; font-weight: 800; color: #000; }
+.price-old { font-size: 13px; font-weight: 600; color: #a0a0a0; text-decoration: line-through; }
+
+/* Tombol Hapus */
+.btn-delete {
+    width: 45px; height: 45px; border-radius: 50%;
+    background: #e6e4df; border: none; cursor: pointer; color: #555;
+    box-shadow: 4px 4px 8px #cac8c4, -4px -4px 8px #ffffff;
+    transition: 0.2s;
+}
+.btn-delete:hover {
+    color: #e74c3c;
+    box-shadow: inset 4px 4px 8px #cac8c4, inset -4px -4px 8px #ffffff;
+}
+
+/* AREA TOTAL (Kanan Bawah) */
+.neu-summary-area {
+    display: flex; flex-direction: column; align-items: flex-end; margin-top: 50px; gap: 15px;
+}
+
+.neu-total-box {
+    background: #e6e4df; border-radius: 8px; padding: 15px 25px; width: 300px;
+    display: flex; justify-content: space-between; font-size: 15px; font-weight: 600; color: #333;
+    box-shadow: inset 4px 4px 8px #cac8c4, inset -4px -4px 8px #ffffff;
+}
+
+.btn-neu-checkout {
+    background: #e6e4df; border: none; border-radius: 8px; padding: 15px 25px; width: 300px;
+    font-size: 14px; font-weight: 600; color: #555; cursor: pointer; transition: 0.2s;
+    box-shadow: 4px 4px 8px #cac8c4, -4px -4px 8px #ffffff;
+}
+.btn-neu-checkout:hover {
+    color: #111;
+    box-shadow: inset 4px 4px 8px #cac8c4, inset -4px -4px 8px #ffffff;
+}
