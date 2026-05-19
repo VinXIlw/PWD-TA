@@ -1,96 +1,108 @@
-// ==========================================================
-// LOGIKA HALAMAN KERANJANG (Hanya jalan di cart.html)
-// ==========================================================
 document.addEventListener('DOMContentLoaded', () => {
     const cartList = document.getElementById('cart-list');
-    const grandTotalEl = document.getElementById('grand-total');
+    const grandTotal = document.getElementById('grand-total');
     
-    // Pastikan kode ini hanya jalan di halaman cart.html
-    if (cartList) {
-        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    // Ambil data keranjang dari browser
+    let cart = JSON.parse(localStorage.getItem('elvra_cart')) || [];
 
-        function renderCart() {
-            if (cartItems.length === 0) {
-                cartList.innerHTML = '<h3 style="text-align: center; color: #888; margin-top: 50px;">Keranjang belanja Anda kosong.</h3>';
-                grandTotalEl.innerText = 'Rp0';
-                return;
+    // Fungsi menggambar produk ke dalam HTML
+    function renderCart() {
+        if (cart.length === 0) {
+            cartList.innerHTML = '<p style="text-align: center; color: #888; font-size: 18px; margin: 40px 0;">Keranjangmu masih kosong. Yuk belanja!</p>';
+            grandTotal.innerText = 'Rp 0';
+            return;
+        }
+
+        let html = '';
+        let total = 0;
+
+        cart.forEach((item, index) => {
+            // Jika status selected belum ada, buat otomatis jadi true
+            if (item.selected === undefined) {
+                item.selected = true;
             }
 
-            cartList.innerHTML = ''; 
-            
-            cartItems.forEach((item, index) => {
-                const p = Number(item.price) || 150000;
+            let subtotal = item.price * item.qty;
+            let oldPrice = (item.price + 50000) * item.qty; 
+
+            // HANYA hitung ke total keseluruhan jika produk sedang dipilih
+            if (item.selected) {
+                total += subtotal;
+            }
+
+            html += `
+            <div class="cart-item-card">
+                <div class="item-selector ${item.selected ? 'selected' : ''}" onclick="togglePilih(${index})"></div>
                 
-                cartList.innerHTML += `
-                    <div class="product-card selected" data-index="${index}" data-price="${p}">
-                        <img src="${item.image || 'Kaos Hitam.jpg'}" alt="Produk" class="product-image" onerror="this.src='Kaos Hitam.jpg'">
-                        
-                        <div class="product-info">
-                            <h3>${item.name || 'Kaos Polos Premium'}</h3>
-                            <p>
-                                Kualitas : Premium<br>
-                                Warna &nbsp;&nbsp;&nbsp;: ${item.color || 'Hitam'}<br>
-                                Ukuran &nbsp;&nbsp;: ${item.size || 'M'}
-                            </p>
-                        </div>
-                        
-                        <div class="product-price">
-                            <div class="current-price">Rp${p.toLocaleString('id-ID')}</div>
-                            <div class="old-price">Rp400.000</div>
-                        </div>
-                        
-                        <div class="selector-circle"></div>
+                <img src="${item.imageSrc}" class="item-img" alt="Product">
+                
+                <div class="item-details">
+                    <h3>${item.title}</h3>
+                    <p>Kualitas &nbsp;: Premium<br>Warna &nbsp;&nbsp;&nbsp;&nbsp;: ${item.color}<br>Ukuran &nbsp;&nbsp;&nbsp;: ${item.size}</p>
+                </div>
+                
+                <div class="item-price-col">
+                    <div class="qty-control-box">
+                        <button onclick="updateQty(${index}, -1)">-</button>
+                        <span>${item.qty}</span>
+                        <button onclick="updateQty(${index}, 1)">+</button>
                     </div>
-                `;
-            });
+                    <div class="price-current">Rp ${subtotal.toLocaleString('id-ID')}</div>
+                    <div class="price-old">Rp ${oldPrice.toLocaleString('id-ID')}</div>
+                </div>
 
-            calculateTotal();
-            attachClickEvents();
+                <button class="btn-delete" onclick="hapusProduk(${index})">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </div>
+            `;
+        });
+
+        cartList.innerHTML = html;
+        grandTotal.innerText = 'Rp ' + total.toLocaleString('id-ID');
+    }
+
+    // Fungsi Mengubah status pilih/tidak produk
+    window.togglePilih = function(index) {
+        cart[index].selected = !cart[index].selected; 
+        localStorage.setItem('elvra_cart', JSON.stringify(cart)); 
+        renderCart(); 
+    }
+
+    // Fungsi Tambah / Kurang Qty
+    window.updateQty = function(index, change) {
+        let currentQty = cart[index].qty;
+        let newQty = currentQty + change;
+        
+        if (newQty >= 1) {
+            cart[index].qty = newQty;
+            localStorage.setItem('elvra_cart', JSON.stringify(cart));
+            renderCart(); 
         }
+    }
 
-        function calculateTotal() {
-            let total = 0;
-            const cards = document.querySelectorAll('.product-card.selected');
-            
-            cards.forEach(card => {
-                total += Number(card.getAttribute('data-price'));
-            });
-            
-            if (grandTotalEl) grandTotalEl.innerText = 'Rp' + total.toLocaleString('id-ID');
-        }
-
-        function attachClickEvents() {
-            const cards = document.querySelectorAll('.product-card');
-            cards.forEach(card => {
-                card.addEventListener('click', function() {
-                    this.classList.toggle('selected');
-                    calculateTotal();
-                });
-            });
-        }
-
-        const btnLanjut = document.getElementById('btn-lanjut-checkout');
-        if (btnLanjut) {
-            btnLanjut.addEventListener('click', () => {
-                const selectedCards = document.querySelectorAll('.product-card.selected');
-                
-                if(selectedCards.length === 0) {
-                    alert('Pilih minimal satu produk untuk di-checkout!');
-                    return;
-                }
-
-                let itemsToCheckout = [];
-                selectedCards.forEach(card => {
-                    let index = card.getAttribute('data-index');
-                    itemsToCheckout.push(cartItems[index]);
-                });
-
-                // Simpan barang yang dicentang ke pendingOrder agar dibaca oleh checkout.html
-                localStorage.setItem('pendingOrder', JSON.stringify(itemsToCheckout));
-                window.location.href = 'checkoutPage.html';
-            });
-        }
-
+    // Fungsi Hapus Produk
+    window.hapusProduk = function(index) {
+        cart.splice(index, 1);
+        localStorage.setItem('elvra_cart', JSON.stringify(cart));
         renderCart();
     }
+
+    renderCart();
+
+    // Di dalam cart.js bagian paling bawah, ganti atau tambahkan fungsi ini:
+    const btnSelesaikan = document.querySelector('.btn-selesaikan');
+    if (btnSelesaikan) {
+        btnSelesaikan.addEventListener('click', () => {
+        // Cek apakah ada produk yang dicentang
+        let sedangDipilih = cart.some(item => item.selected);
+        if (sedangDipilih) {
+            window.location.href = 'payments.html'; // Pindah ke halaman checkout
+        } else {
+            alert('Silakan pilih minimal 1 produk di keranjang terlebih dahulu!');
+        }
+    });
+}
+
 });
+

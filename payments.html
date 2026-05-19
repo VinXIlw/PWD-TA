@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Pembayaran - Elvra.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="homePage.css">
+    <link rel="stylesheet" href="checkout.css">
+</head>
+<body class="checkout-bg">
+
+    <header>
+        <div class="logo">
+            <a href="homePage.html" style="display: flex; align-items: center; color: inherit;">
+                <img src="images/logoimg.png" alt="Logo" onerror="this.src='https://via.placeholder.com/35'">
+                <h2>Elvra.</h2>
+            </a>
+        </div>
+        <nav class="navbar">
+            <a href="homePage.html">Home</a>
+            <a href="homePage.html#about-us">About</a>
+            <a href="ProductsPage.html">Products</a>
+            <a href="#">Review</a>
+            <a href="#">Contact</a>
+        </nav>
+        <div class="header-icons">
+            <a href="#"><i class="fa-regular fa-heart"></i></a>
+            <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+            <a href="#"><i class="fa-regular fa-user"></i></a>
+        </div>
+    </header>
+
+    <main class="checkout-container">
+        <div class="checkout-grid">
+            
+            <div class="checkout-left-column">
+                
+                <div class="neu-card-box">
+                    <h3 class="section-title"><i class="fa-solid fa-location-dot"></i> Alamat Pengiriman</h3>
+                    <div class="address-details">
+                        <strong>Kelvin Gaming (0853-6534-4527)</strong>
+                        <p>Jl. Jenderal Sudirman No. 45, Blok C3, Pontianak, Kalimantan Barat, 78123</p>
+                    </div>
+                </div>
+
+                <div class="neu-card-box">
+                    <h3 class="section-title"><i class="fa-solid fa-box-open"></i> Produk yang Dipesan</h3>
+                    <div id="checkout-products-list">
+                        </div>
+                </div>
+
+                <div class="neu-card-box">
+                    <h3 class="section-title"><i class="fa-solid fa-truck-fast"></i> Opsi Pengiriman</h3>
+                    <div class="shipping-selector-box">
+                        <select id="shipping-select" class="neu-select">
+                            <option value="15000" selected>Reguler (Rp 15.000) - Estimasi 2-3 Hari</option>
+                            <option value="25000">Format Kargo/Ekspedisi (Rp 25.000) - Estimasi 3-5 Hari</option>
+                            <option value="40000">Instant / Same Day (Rp 40.000) - Tiba Hari Ini</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="checkout-right-column">
+                
+                <div class="neu-card-box">
+                    <h3 class="section-title"><i class="fa-solid fa-credit-card"></i> Metode Pembayaran</h3>
+                    <div class="payment-options">
+                        <label class="payment-label">
+                            <input type="radio" name="payment-method" value="qris" checked>
+                            <span><i class="fa-solid fa-qrcode"></i> QRIS (Gopay/OVO/Dana)</span>
+                        </label>
+                        <label class="payment-label">
+                            <input type="radio" name="payment-method" value="bca">
+                            <span><i class="fa-solid fa-building-columns"></i> Transfer Bank BCA</span>
+                        </label>
+                        <label class="payment-label">
+                            <input type="radio" name="payment-method" value="cod">
+                            <span><i class="fa-solid fa-hand-holding-dollar"></i> Bayar di Tempat (COD)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="neu-card-box text-right">
+                    <h3 class="section-title text-left"><i class="fa-solid fa-receipt"></i> Ringkasan Total</h3>
+                    <div class="billing-row">
+                        <span>Subtotal Produk:</span>
+                        <span id="summary-subtotal">Rp 0</span>
+                    </div>
+                    <div class="billing-row">
+                        <span>Biaya Ongkir:</span>
+                        <span id="summary-shipping">Rp 15.000</span>
+                    </div>
+                    <hr class="neu-divider">
+                    <div class="billing-row total-row">
+                        <span>Total Pembayaran:</span>
+                        <strong id="summary-grand-total">Rp 0</strong>
+                    </div>
+                    <button class="btn-place-order" id="btn-buat-pesanan">Buat Pesanan Sekarang</button>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>CUSTOMER SERVICE</h3>
+                <ul>
+                    <li><a href="#">Help Centre</a></li>
+                    <li><a href="#">Payment Methods</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>ABOUT ELVRA</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Policies</a></li>
+                </ul>
+            </div>
+            <div class="footer-column payment-col">
+                <div class="payment-grid">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Visa_Inc._logo_%282021%E2%80%93present%29.svg/3840px-Visa_Inc._logo_%282021%E2%80%93present%29.svg.png" alt="Visa">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" alt="BCA">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="checkout.js"></script>
+</body>
+</html>
