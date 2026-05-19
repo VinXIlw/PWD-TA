@@ -38,7 +38,7 @@
 .search-btn {
     width: 65px;
     height: 58px;
-    background-color: #a8a59f; /* Warna abu-abu tombol search */
+    background-color: #a39886; /* Warna abu-abu tombol search */
     color: white;
     border: none;
     border-radius: 50px; /* Kapsul sempurna */
@@ -49,7 +49,7 @@
 }
 
 .search-btn:hover {
-    background-color: #8c8983;
+    background-color: #776e60;
 }
 
 /* =========================================
