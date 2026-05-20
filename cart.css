@@ -1,8 +1,3 @@
-/* =========================================
-   DESAIN NEUMORPHISM CART
-   ========================================= */
-
-/* Warna dasar background wajib seragam untuk Neumorphism */
 .cart-bg-neu {
     background-color: #e6e4df !important; 
 }
@@ -14,7 +9,7 @@
     justify-content: center;
 }
 
-/* KOTAK UTAMA (Efek Timbul) */
+/* kotak utama */
 .neu-cart-box {
     background: #e6e4df;
     border-radius: 20px;
@@ -24,7 +19,7 @@
     box-shadow: 12px 12px 24px #cac8c4, -12px -12px 24px #ffffff;
 }
 
-/* KARTU ITEM (Efek Tenggelam/Inset) */
+/* kartu item */
 .cart-item-card {
     background: #e6e4df;
     border-radius: 16px;
@@ -36,7 +31,7 @@
     box-shadow: inset 6px 6px 12px #cac8c4, inset -6px -6px 12px #ffffff;
 }
 
-/* Style dasar lingkaran (pastikan kursor berubah jadi jari saat diarahkan) */
+/*Style dasar lingkaran*/
 .item-selector {
     width: 35px;
     height: 35px;
@@ -50,7 +45,7 @@
     transition: all 0.2s ease;
 }
 
-/* TAMPILAN SAAT BULATAN DIPILIH/AKTIF (Diberi titik/centang di tengah) */
+/* tampilan saat bulatan aktif */
 .item-selector.selected {
     box-shadow: 
         3px 3px 6px #cac8c4, 
@@ -111,7 +106,7 @@
     box-shadow: inset 4px 4px 8px #cac8c4, inset -4px -4px 8px #ffffff;
 }
 
-/* AREA TOTAL (Kanan Bawah) */
+/* area total */
 .neu-summary-area {
     display: flex; flex-direction: column; align-items: flex-end; margin-top: 50px; gap: 15px;
 }
