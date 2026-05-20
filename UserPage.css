@@ -61,7 +61,7 @@ header {
 .header-icons a:hover { color: #3b82f6; transform: scale(1.1); }
 
 
-        /* --- Main Layout --- */
+        /*main layout*/
         .main-container {
             display: flex;
             gap: 30px;
@@ -70,7 +70,7 @@ header {
             margin: 0 auto;
         }
 
-        /* --- Sidebar --- */
+        /*sidebar*/
         .sidebar { width: 260px; flex-shrink: 0; }
 
         .profile-card {
@@ -136,7 +136,7 @@ header {
             background: #f4fff4;
         }
 
-        /* --- Content Area --- */
+        /*content area*/
         .content {
             flex: 1;
             background: white;
@@ -153,7 +153,7 @@ header {
 
         .section-title { font-size: 20px; font-weight: 600; margin-bottom: 20px; color: #000; }
 
-        /* Buttons Styling */
+        /* button stylingnya */
         .btn {
             border: none; border-radius: 6px; padding: 6px 15px;
             font-size: 12px; font-weight: 600; color: white; cursor: pointer;
@@ -165,7 +165,7 @@ header {
         .btn-red { background: linear-gradient(to bottom, #ff4d4d, #e60000); }
         .btn-red:hover { background: linear-gradient(to bottom, #ff6666, #ff1a1a); }
 
-        /* --- Tab 1: Personal Data Layout --- */
+        /*di tab 1: Personal Data Layout*/
         .personal-layout {
             display: flex; gap: 40px; margin-top: 20px;
         }
@@ -204,7 +204,7 @@ header {
         .form-actions { display: flex; gap: 30px; margin-top: 30px; margin-left: 75px; }
         .form-actions .btn { width: 100px; padding: 8px 0; border-radius: 20px; font-size: 14px;}
 
-        /* --- Cards List (Address, Payment, Bank) --- */
+        /*ini cards list (Address, Payment, Bank)*/
         .header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         
         .list-container { display: flex; flex-direction: column; gap: 15px; }
@@ -223,14 +223,14 @@ header {
         .card-item .info h3 { font-size: 16px; font-weight: 500; margin-bottom: 3px; }
         .card-item .info p { font-size: 12px; color: #555; }
 
-        /* --- Add Form Box (For Bank & Address) --- */
+        /*add form box (For Bank & Address)*/
         .add-box {
             background: #f0f0f0;
             border: 1px solid #ccc;
             padding: 20px;
             margin-top: 20px;
             border-radius: 8px;
-            display: none; /* Tersembunyi secara default */
+            display: none; /*tersembunyi*/
             animation: fadeIn 0.3s;
         }
         .add-box h3 { font-size: 16px; font-weight: 600; margin-bottom: 15px; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
