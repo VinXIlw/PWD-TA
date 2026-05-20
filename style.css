@@ -1,15 +1,10 @@
-/* =========================================
-   1. RESET & VARIABLES
-   ========================================= */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
 :root {
-    --primary: #48bb78; /* Hijau segar sesuai tombol */
+    --primary: #48bb78;
     --black: #1a1a1a;
     --gray-text: #666666;
     --gray-light: #999999;
-    --bg-body: #f8f9fa; /* Latar belakang abu-abu sangat muda */
-    --bg-footer: #111827; /* Biru dongker/hitam pekat untuk footer */
+    --bg-body: #f8f9fa;
+    --bg-footer: #111827;
     --border-color: #e5e7eb;
 }
 
@@ -30,7 +25,7 @@ body {
 }
 
 /* =========================================
-   2. HEADER (FULL WIDTH)
+   1. HEADER (FULL WIDTH)
    ========================================= */
 header {
     background-color: #ffffff;
@@ -92,7 +87,7 @@ header {
 }
 
 /* =========================================
-   3. KONTEN PRODUK UTAMA (CENTERED CARD)
+   2. KONTEN PRODUK UTAMA (CENTERED CARD)
    ========================================= */
 main.product-content {
     flex: 1; /* Mendorong footer ke bawah */
@@ -247,7 +242,7 @@ main.product-content {
 
 .qty-btn {
     width: 40px;
-    background-color: #eaf6ed; /* Hijau sangat muda */
+    background-color: #eaf6ed;
     color: var(--primary);
     border: none;
     font-size: 18px;
@@ -313,7 +308,7 @@ main.product-content {
 }
 
 /* =========================================
-   4. FOOTER (DARK MODE BAWAH)
+   3. FOOTER (DARK MODE BAWAH)
    ========================================= */
 .footer-modern {
     background-color: var(--bg-footer);
@@ -453,7 +448,7 @@ main.product-content {
 }
 
 /* =========================================
-   5. SIDEBAR KERANJANG (TETAP AMAN)
+   4. SIDEBAR KERANJANG (TETAP AMAN)
    ========================================= */
 .cart-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;

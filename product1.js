@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const colorCircles = document.querySelectorAll('.color-circle, .color-item');
     const mainImage = document.getElementById('main-image');
 
-    // Daftar Gambar Berdasarkan Warna (Fitur Keren Milikmu)
+    // Daftar Gambar Berdasarkan Warna
     const imageSources = {
         "Hitam": "images/Kaos Hitam.jpg",
         "Biru": "images/Kaos Biru.jpeg",
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 6. LOGIKA TOMBOL "BELI SEKARANG" (CHECKOUT LANGSUNG) ---
+    // --- 6. LOGIKA TOMBOL "BELI SEKARANG" ---
     const btnBuyNow = document.querySelector('.btn-checkout, .btn-p-buy');
     if (btnBuyNow) {
         btnBuyNow.addEventListener('click', (e) => {
