@@ -240,7 +240,7 @@
     </div>
 
     <script>
-        // 1. Tab Switching Function
+        //switching function
         function switchTab(tabId, element) {
             document.querySelectorAll('.page-content').forEach(page => {
                 page.classList.remove('active-page');
@@ -253,7 +253,7 @@
             element.classList.add('active');
         }
 
-        // 2. Select & Preview Image Function (Local Folder)
+        //pilih foto
         function previewImage(event) {
             const file = event.target.files[0];
             if (file) {
@@ -267,41 +267,41 @@
                     sidebarAvatar.src = e.target.result;
                     sidebarAvatar.style.display = 'block';
 
-                    // Munculkan tombol delete photo
+                    //munculkan tombol hapus di foto
                     document.getElementById('btn-delete-photo').style.display = 'block';
                 }
                 reader.readAsDataURL(file);
             }
         }
 
-        // 2b. Delete Photo Function
+        //delete foto function
         function deletePhoto() {
             if(confirm('Are you sure you want to remove your profile photo?')) {
-                // Sembunyikan dan kosongkan image preview
+                // sembunyikan dan kosongkan image preview
                 const preview = document.getElementById('preview-img');
                 preview.src = '';
                 preview.style.display = 'none';
                 
-                // Sembunyikan dan kosongkan image avatar di sidebar
+                // sembunyikan dan kosongkan image avatar di sidebar
                 const sidebarAvatar = document.getElementById('sidebar-avatar');
                 sidebarAvatar.src = '';
                 sidebarAvatar.style.display = 'none';
 
-                // Reset isi file input supaya bisa upload file yang sama lagi
+                // reset isi file input supaya bisa upload file yang sama lagi
                 document.getElementById('fileUpload').value = '';
 
-                // Sembunyikan tombol delete photo kembali
+                // sembunyikan tombol delete photo kembali
                 document.getElementById('btn-delete-photo').style.display = 'none';
             }
         }
 
-        // 3. Save Personal Data
+        //save personal data
         function savePersonalData() {
             const name = document.getElementById('inp-name').value;
             alert('Personal data for ' + (name || 'user') + ' successfully saved!');
         }
 
-        // 4. Reset/Delete Personal Form
+        //reset atau delete personal form
         function resetForm() {
             if(confirm('Are you sure you want to clear your data?')) {
                 document.getElementById('inp-name').value = '';
@@ -310,14 +310,14 @@
             }
         }
 
-        // 5. Universal Delete Function for Cards
+        //hapus fungsi untuk kartu
         function deleteItem(btnElement) {
             if(confirm('Are you sure you want to delete this item?')) {
                 btnElement.closest('.card-item').remove();
             }
         }
 
-        // 6. TOGGLE FORMS
+        // toggle forms
         function toggleBankForm() {
             const formBox = document.getElementById('bank-form-box');
             if (formBox.style.display === 'none' || formBox.style.display === '') {
@@ -338,7 +338,7 @@
             }
         }
 
-        // 7. ADD DYNAMIC DATA (BANK & ADDRESS)
+        //add data (BANK & ADDRESS)
         function addBankAccount() {
             const bankName = document.getElementById('new-bank-name').value;
             const owner = document.getElementById('new-bank-owner').value;
@@ -361,7 +361,7 @@
 
             bankList.appendChild(newCard);
 
-            // Clear inputs & hide form
+            //Hapus input & sembunyikan formulir
             document.getElementById('new-bank-owner').value = '';
             document.getElementById('new-bank-acc').value = '';
             toggleBankForm(); 
@@ -392,7 +392,7 @@
 
             addressList.appendChild(newCard);
 
-            // Clear inputs & hide form
+            //Hapus input & sembunyikan formulir
             document.getElementById('new-addr-name').value = '';
             document.getElementById('new-addr-recipient').value = '';
             document.getElementById('new-addr-phone').value = '';
