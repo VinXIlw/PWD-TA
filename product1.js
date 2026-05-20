@@ -1,26 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // --- 1. SETUP VARIABEL ---
-    const productPrice = 150000; // Harga produk
-    const productName = "Kaos Polos Premium";
 
+    // --- 1. LOGIKA PLUS / MINUS JUMLAH ---
     const btnPlus = document.getElementById('btn-plus');
     const btnMinus = document.getElementById('btn-minus');
     const qtyInput = document.getElementById('qty-input');
-    
-    const sizeBoxes = document.querySelectorAll('.size-box');
-    const colorCircles = document.querySelectorAll('.color-circle');
-    const mainImage = document.getElementById('main-image');
 
-    // Daftar Gambar Berdasarkan Warna
-    const imageSources = {
-        "Hitam": "images/Kaos Hitam.jpg",
-        "Biru": "images/Kaos Biru.jpeg",
-        "Merah": "images/Kaos Merah.jpg",
-        "Putih": "images/Kaos Putih.jpg"
-    };
-
-    // --- 2. LOGIKA PLUS / MINUS JUMLAH ---
     if (btnPlus && btnMinus && qtyInput) {
         btnPlus.addEventListener('click', () => {
             qtyInput.value = parseInt(qtyInput.value) + 1;
@@ -33,168 +17,123 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 3. LOGIKA PILIH UKURAN ---
+    // --- 2. LOGIKA PILIH UKURAN ---
+    const sizeBoxes = document.querySelectorAll('.size-box, .size-item');
     sizeBoxes.forEach(box => {
-        box.addEventListener('click', () => {
-            sizeBoxes.forEach(s => s.classList.remove('active'));
-            box.classList.add('active');
+        box.addEventListener('click', function() {
+            sizeBoxes.forEach(s => s.classList.remove('active', 'active-size'));
+            this.classList.add('active', 'active-size');
         });
     });
 
-    // --- 4. LOGIKA PILIH WARNA & GANTI GAMBAR ---
-    colorCircles.forEach(circle => {
-        circle.addEventListener('click', () => {
-            // Ubah garis seleksi
-            colorCircles.forEach(c => c.classList.remove('active'));
-            circle.classList.add('active');
-
-            // Ganti gambar dengan efek transisi cepat
-            const selectedColor = circle.getAttribute('data-color');
-            mainImage.style.opacity = 0; 
-            
-            setTimeout(() => {
-                if (imageSources[selectedColor]) {
-                    mainImage.src = imageSources[selectedColor];
-                }
-                mainImage.style.opacity = 1;
-            }, 200);
-        });
-    });
-
-    // ==========================================================
-// LOGIKA TAMBAH KE KERANJANG DI HALAMAN PRODUK (product1.html)
-// ==========================================================
-const btnCartSubmit = document.querySelector('.btn-cart');
-
-// Fungsi untuk mengambil pilihan user (Warna, Ukuran, Jumlah)
-function getSelectedData() {
-    const qtyInput = document.getElementById('qty-input');
-    const activeColor = document.querySelector('.color-circle.active');
-    const activeSize = document.querySelector('.size-box.active');
+    // --- 3. LOGIKA PILIH WARNA & GANTI GAMBAR ---
+    const colorCircles = document.querySelectorAll('.color-circle, .color-item');
     const mainImage = document.getElementById('main-image');
 
-    return {
-        name: "Kaos Polos Premium", // Sesuaikan nama produk
-        price: 150000,              // Sesuaikan harga produk
-        color: activeColor ? activeColor.getAttribute('data-color') : 'Hitam',
-        size: activeSize ? activeSize.innerText : 'M',
-        qty: qtyInput ? parseInt(qtyInput.value) : 1,
-        image: mainImage ? mainImage.src : 'Kaos Hitam.jpg'
+    // Daftar Gambar Berdasarkan Warna (Fitur Keren Milikmu)
+    const imageSources = {
+        "Hitam": "images/Kaos Hitam.jpg",
+        "Biru": "images/Kaos Biru.jpeg",
+        "Merah": "images/Kaos Merah.jpg",
+        "Putih": "images/Kaos Putih.jpg"
     };
-}
 
-// Aksi saat tombol "+ Keranjang" diklik
-if (btnCartSubmit) {
-    btnCartSubmit.addEventListener('click', (e) => {
-        e.preventDefault(); // Mencegah halaman ke-refresh
-        
-        const newItem = getSelectedData();
+    colorCircles.forEach(circle => {
+        circle.addEventListener('click', function() {
+            colorCircles.forEach(c => c.classList.remove('active', 'active-color'));
+            this.classList.add('active', 'active-color');
 
-        // 1. Ambil data keranjang yang sudah ada di memori
-        let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
-        
-        // 2. Masukkan produk baru ini ke dalam daftar keranjang
-        cart.push(newItem);
-        
-        // 3. Simpan ulang daftarnya ke memori browser
-        localStorage.setItem('cartItems', JSON.stringify(cart));
-
-        // 4. LANGSUNG PINDAH KE HALAMAN CART.HTML
-        window.location.href = 'cart.html';
+            // Ganti gambar dengan efek transisi cepat
+            const selectedColor = this.getAttribute('data-color');
+            if (mainImage && imageSources[selectedColor]) {
+                mainImage.style.opacity = 0; 
+                setTimeout(() => {
+                    mainImage.src = imageSources[selectedColor];
+                    mainImage.style.opacity = 1;
+                }, 200);
+            }
+        });
     });
-}
 
-const btnCheckoutSubmit = document.querySelector('.btn-checkout');
-
-// Aksi saat tombol "CheckOut" diklik
-if (btnCheckoutSubmit) {
-    btnCheckoutSubmit.addEventListener('click', (e) => {
-        e.preventDefault(); // Mencegah halaman ke-refresh
+    // --- 4. FUNGSI PENGAMBIL DATA PRODUK (DINAMIS & AKURAT) ---
+    function dapatkanDataProduk() {
+        const titleEl = document.querySelector('.p-title, .product-details h1');
+        const priceEl = document.querySelector('.p-price-current, .price, .current-price');
+        const oldPriceEl = document.querySelector('.p-price-old, .old-price, .price-old, del, strike, s'); 
         
-        // Ambil data produk yang sedang aktif/dipilih saat ini
-        const newItem = getSelectedData();
+        if (!titleEl || !priceEl || !mainImage) {
+            alert('HTML produk tidak terdeteksi!'); return null;
+        }
 
-        /* Gunakan nama key yang berbeda (misal: 'checkoutItem') 
-           agar halaman checkout tahu bahwa ini adalah barang "Beli Langsung", 
-           bukan dari seluruh daftar keranjang belanjaan.
-        */
-        
-        // 1. Karena beli langsung, kita buat array baru berisi 1 barang ini saja
-        let checkoutData = [newItem];
-        
-        // 2. Simpan ke dalam memori browser khusus untuk sesi checkout
-        localStorage.setItem('checkoutItem', JSON.stringify(checkoutData));
+        let color = '-';
+        if (colorCircles.length > 0) {
+            const activeColor = document.querySelector('.color-circle.active, .color-item.active, .color-circle.active-color');
+            if (!activeColor) { alert('Tunggu dulu! Silakan pilih warna.'); return null; }
+            color = activeColor.getAttribute('data-color') || 'Terpilih';
+        }
 
-        // 3. LANGSUNG PINDAH KE HALAMAN CHECKOUT.HTML
-        window.location.href = 'payments.html'; 
-    });
-}
+        let size = '-';
+        if (sizeBoxes.length > 0) {
+            const activeSize = document.querySelector('.size-box.active, .size-item.active, .size-box.active-size');
+            if (!activeSize) { alert('Tunggu dulu! Silakan pilih ukuran.'); return null; }
+            size = activeSize.innerText;
+        }
 
-    // --- 6. LOGIKA BUKA/TUTUP SIDEBAR ---
-    const closeCartBtn = document.getElementById('close-cart');
-    const iconCartHeader = document.getElementById('open-cart-btn');
+        const price = parseInt(priceEl.innerText.replace(/[^0-9]/g, '')); 
+        let oldPrice = price; 
+        if (oldPriceEl) {
+            oldPrice = parseInt(oldPriceEl.innerText.replace(/[^0-9]/g, ''));
+        }
 
-    function closeCart() {
-        cartSidebar.classList.remove('active');
-        cartOverlay.classList.remove('active');
+        return {
+            id: Date.now(),
+            title: titleEl.innerText,
+            price: price,
+            oldPrice: oldPrice,
+            imageSrc: mainImage.src,
+            qty: qtyInput ? parseInt(qtyInput.value) : 1,
+            color: color,
+            size: size,
+            selected: true // PENTING: Otomatis siap dibayar
+        };
     }
 
-    if (closeCartBtn) closeCartBtn.addEventListener('click', closeCart);
-    if (cartOverlay) cartOverlay.addEventListener('click', closeCart);
-    if (iconCartHeader) {
-        iconCartHeader.addEventListener('click', () => {
-            cartSidebar.classList.add('active');
-            cartOverlay.classList.add('active');
+    // --- 5. LOGIKA TOMBOL "+ KERANJANG" ---
+    const btnAddToCart = document.querySelector('.btn-cart, .btn-p-cart');
+    if (btnAddToCart) {
+        btnAddToCart.addEventListener('click', (e) => {
+            e.preventDefault();
+            const dataBarang = dapatkanDataProduk();
+            if (dataBarang) {
+                let cart = JSON.parse(localStorage.getItem('elvra_cart')) || [];
+                cart.push(dataBarang);
+                localStorage.setItem('elvra_cart', JSON.stringify(cart));
+                alert(`Sip! ${dataBarang.title} berhasil masuk keranjang.`);
+            }
         });
     }
 
-    // --- 7. LOGIKA CHECKOUT (PINDAH HALAMAN) ---
-    // Berlaku untuk tombol checkout di halaman utama maupun di dalam sidebar
-    document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('btn-checkout') || e.target.classList.contains('btn-checkout-sidebar')) {
+    // --- 6. LOGIKA TOMBOL "BELI SEKARANG" (CHECKOUT LANGSUNG) ---
+    const btnBuyNow = document.querySelector('.btn-checkout, .btn-p-buy');
+    if (btnBuyNow) {
+        btnBuyNow.addEventListener('click', (e) => {
             e.preventDefault();
+            const dataBarang = dapatkanDataProduk();
             
-            // Simpan data pilihan user ke LocalStorage agar halaman Checkout tahu apa yang dibeli
-            const checkoutData = getSelectedData();
-            localStorage.setItem('pendingOrder', JSON.stringify(checkoutData));
-            
-            // Arahkan ke file checkout
-            window.location.href = 'checkout.html';
-        }
-    });
+            if (dataBarang) {
+                let cart = JSON.parse(localStorage.getItem('elvra_cart')) || [];
+                
+                // Matikan centang barang lain agar tidak ikut terbayar
+                cart.forEach(item => item.selected = false);
+                
+                // Simpan barang ini ke memori utama yang sama
+                cart.push(dataBarang);
+                localStorage.setItem('elvra_cart', JSON.stringify(cart));
+                
+                // Terbang ke halaman pembayaran
+                window.location.href = 'payments.html';
+            }
+        });
+    }
 
 });
-
-const btnAddToCart = document.querySelector('.btn-cart');
-
-if(btnAddToCart) {
-    btnAddToCart.addEventListener('click', () => {
-        // 1. Ambil data produk yang sedang dilihat
-        const title = document.querySelector('.product-details h1').innerText;
-        const priceText = document.querySelector('.price').innerText;
-        const price = parseInt(priceText.replace(/[^0-9]/g, '')); // Ubah "Rp150.000" jadi angka 150000
-        const imageSrc = document.getElementById('main-image').src;
-        const qty = parseInt(document.getElementById('qty-input').value) || 1;
-        const color = document.querySelector('.color-circle.active').getAttribute('data-color');
-        const size = document.querySelector('.size-box.active').innerText;
-
-        // 2. Buat format data untuk disimpan
-        const productData = {
-            id: Date.now(), // id unik
-            title: title,
-            price: price,
-            imageSrc: imageSrc,
-            qty: qty,
-            color: color,
-            size: size
-        };
-
-        // 3. Simpan ke database sementara di browser (LocalStorage)
-        let cart = JSON.parse(localStorage.getItem('elvra_cart')) || [];
-        cart.push(productData);
-        localStorage.setItem('elvra_cart', JSON.stringify(cart));
-
-        // 4. Kasih notifikasi tanpa pindah halaman
-        alert('Produk berhasil ditambahkan ke keranjang!');
-    });
-}
