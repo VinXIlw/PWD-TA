@@ -105,11 +105,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (sedangDipilih) {
                 window.location.href = 'payments.html'; // Pindah ke halaman pembayaran
             } else {
-                alert('Silakan pilih minimal 1 produk di keranjang terlebih dahulu!');
+                alert('Please select at least 1 product in the cart first!');
             }
         });
     } else {
-        console.log("Tombol checkout tidak ditemukan di HTML!");
+        console.log("Checkout button not found in HTML!");
     }
 
 });
